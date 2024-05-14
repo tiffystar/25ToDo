@@ -42,20 +42,24 @@ function addToDo() {
     document.getElementById("toDoInput").value = "";
 }
 
+//MARK items as completed
 function clearCheckedItems() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     var archivedList = document.getElementById('archivedList');
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
             var listItem = checkbox.parentElement;
-            listItem.removeChild(checkbox); // Remove the checkbox from the list item
-            archivedList.appendChild(listItem); // Move the modified list item to the archived list
+            // Remove the checkbox from the list item
+            listItem.removeChild(checkbox); 
+            // Move the modified list item to the archived list
+            archivedList.appendChild(listItem); 
         }
     });
 }
+//REMOVE selected items
 function deleteCheckedItems() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    var itemsToRemove = [];
+    var itemsToRemove = [];// create an array to remove multiple items
 
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
