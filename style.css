@@ -1,5 +1,13 @@
-body {
-    
+#toDoInput {
+    background-color: white; /*pink */
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
 }
 h1 { 
     color: rgb(102, 0, 128);
@@ -27,7 +35,7 @@ button.actionButton {
 
 /* Style the Add to List button */
 button#addButton {
-    background-color: #cf6dcf; /*pink */
+    background-color: #f14df1fa; /*pink */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -39,7 +47,7 @@ button#addButton {
     cursor: pointer;
 }
 button#deleteButton {
-    background-color: #e25353; /*pink */
+    background-color: #eb7387; /*pink */
     border: none;
     color: white;
     padding: 25px;

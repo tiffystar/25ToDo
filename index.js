@@ -1,9 +1,24 @@
 // console.log('My code is running');
 
+//Allows user to hit "enter" instead of clicking button
+document.getElementById("toDoInput").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("addButton").click();
+    }
+});
+
 function addToDo() {
     // Get the input value
     var todoInput = document.getElementById("toDoInput").value;
     
+    // Check if the input is empty
+    if (todoInput === "") {
+        // Alert the user or handle the empty input in some way
+        alert("Please enter a valid to-do item.");
+        return; // Exit the function early if input is empty
+    }
+
     // Create a new list item
     var li = document.createElement("li");
     
@@ -29,19 +44,31 @@ function addToDo() {
 
 function clearCheckedItems() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var archivedList = document.getElementById('archivedList');
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
-             // Move the parent li element to the archived list
-             archivedList.appendChild(checkbox.parentElement);
+            var listItem = checkbox.parentElement;
+            listItem.removeChild(checkbox); // Remove the checkbox from the list item
+            archivedList.appendChild(listItem); // Move the modified list item to the archived list
         }
     });
 }
 function deleteCheckedItems() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    var itemsToRemove = [];
+
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
-            checkbox.parentElement.remove(); // Remove the parent li element
-            saveToDoList(); // Save the updated list to local storage
+            // Add the parent li element to the itemsToRemove array
+            itemsToRemove.push(checkbox.parentElement);
         }
     });
+
+    // Remove each item in the itemsToRemove array from the todoList
+    itemsToRemove.forEach(function(item) {
+        todoList.removeChild(item);
+    });
+
+    // Save the updated list to local storage after removing all selected items
+    saveToDoList();
 }
